@@ -53,8 +53,39 @@ const getProductById = async (req: Request, res: Response) => {
   }
 };
 
+const updateProductById = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.productId;
+    const updateData = req.body;
+
+    const result = await ProductServices.updateProductById(
+      productId,
+      updateData,
+    );
+    if (!result) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Product updated successfully!',
+      data: result,
+    });
+  } catch (err: any) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while updating the product',
+      error: err.message,
+    });
+  }
+};
+
 export const ProductControllers = {
   createProduct,
   getALLProducts,
   getProductById,
+  updateProductById,
 };
