@@ -20,7 +20,7 @@ const getALLProducts = async (req: Request, res: Response) => {
     const result = await ProductServices.getALLProducts();
     res.status(200).json({
       success: true,
-      message: 'Product is created successfully',
+      message: 'Products fetched successfully!',
       data: result,
     });
   } catch (err) {
