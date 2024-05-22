@@ -55,7 +55,6 @@ const getProductById = async (req: Request, res: Response) => {
 
 const updateProductById = async (req: Request, res: Response) => {
   try {
-    console.log('Request received:', req.body);
     const { productId } = req.params;
     const { quantity } = req.body;
 
@@ -115,7 +114,6 @@ const searchProducts = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err: any) {
-    console.log(err);
     res.status(500).json({
       success: false,
       message: 'An error occurred while searching for products',
