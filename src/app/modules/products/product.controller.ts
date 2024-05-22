@@ -55,13 +55,11 @@ const getProductById = async (req: Request, res: Response) => {
 
 const updateProductById = async (req: Request, res: Response) => {
   try {
-    const productId = req.params.productId;
-    const updateData = req.body;
+    console.log('Request received:', req.body);
+    const { productId } = req.params;
+    const { quantity } = req.body;
 
-    const result = await ProductServices.updateProductById(
-      productId,
-      updateData,
-    );
+    const result = await ProductServices.updateProductById(productId, quantity);
     if (!result) {
       return res.status(404).json({
         success: false,
@@ -107,10 +105,30 @@ const deleteProductById = async (req: Request, res: Response) => {
   }
 };
 
+const searchProducts = async (req: Request, res: Response) => {
+  try {
+    const { searchTerm } = req.query;
+    const result = await ProductServices.searchProducts(searchTerm as string);
+    res.status(200).json({
+      success: true,
+      message: 'Products fetched successfully!',
+      data: result,
+    });
+  } catch (err: any) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while searching for products',
+      error: err.message,
+    });
+  }
+};
+
 export const ProductControllers = {
   createProduct,
   getALLProducts,
   getProductById,
   updateProductById,
   deleteProductById,
+  searchProducts,
 };
