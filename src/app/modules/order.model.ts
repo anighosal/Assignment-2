@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { TOrder } from './orders/order.interface';
 
 const orderSchema = new Schema<TOrder>(
@@ -24,4 +24,4 @@ const orderSchema = new Schema<TOrder>(
   { timestamps: true },
 );
 
-export const OrderModel = mongoose.model('Order', orderSchema);
+export const Order = model<TOrder>('Order', orderSchema);
