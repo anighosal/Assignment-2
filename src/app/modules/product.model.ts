@@ -41,7 +41,7 @@ const productSchema = new Schema<TProduct>({
     required: true,
   },
   tags: [String],
-  variants: [variantSchema], // Embedding the Variant schema
+  variants: [variantSchema],
   inventory: {
     type: inventorySchema,
     required: true,

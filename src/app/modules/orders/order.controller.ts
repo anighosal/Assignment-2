@@ -11,12 +11,11 @@ const createOrder = async (req: Request, res: Response) => {
       message: 'Order created successfully!',
       data: result,
     });
-  } catch (err: any) {
-    console.error(err);
+  } catch (err) {
     res.status(500).json({
       success: false,
       message: 'An error occurred while creating the order',
-      error: err.message,
+      error: (err as Error).message,
     });
   }
 };
@@ -30,7 +29,11 @@ const getALLOrders = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while creating the order',
+      error: (err as Error).message,
+    });
   }
 };
 
@@ -51,12 +54,11 @@ const getOrdersByEmail = async (req: Request, res: Response) => {
       message: 'Orders fetched successfully for user email!',
       data: result,
     });
-  } catch (err: any) {
-    console.error(err);
+  } catch (err) {
     res.status(500).json({
       success: false,
       message: 'An error occurred while fetching orders by email',
-      error: err.message,
+      error: (err as Error).message,
     });
   }
 };

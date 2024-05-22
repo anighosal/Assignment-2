@@ -3,7 +3,6 @@ import express, { Application, Request, Response } from 'express';
 import { OrderRoutes } from './app/modules/orders/order.route';
 import { ProductRoutes } from './app/modules/products/product.route';
 const app: Application = express();
-const port = 5000;
 
 // parsers
 app.use(express.json());

@@ -3,4 +3,9 @@ export type TOrder = {
   productId: string;
   price: number;
   quantity: number;
+  name?: string;
+  inventory?: {
+    quantity: number;
+    inStock: boolean;
+  };
 };

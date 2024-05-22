@@ -10,10 +10,10 @@ export type TInventory = {
 
 export type TProduct = {
   name: string;
-  description: string;
+  description?: string | undefined;
   price: number;
   category: string;
-  tags: string[];
-  variants: [TProduct];
+  tags?: string[] | undefined;
+  variants?: TVariant[];
   inventory: TInventory;
 };

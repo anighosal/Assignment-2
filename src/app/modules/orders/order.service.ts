@@ -15,8 +15,39 @@ const getOrdersByEmail = async (email: string) => {
   return result;
 };
 
+const getProductByName = async (productName: string) => {
+  const product = await Order.findOne({ name: productName });
+  return product;
+};
+
+const getProductById = async (productId: string) => {
+  const product = await Order.findById(productId);
+  return product;
+};
+
+const updateProductInventory = async (
+  productId: string,
+  quantity: number,
+  inStock: boolean,
+) => {
+  const updatedProduct = await Order.findByIdAndUpdate(
+    productId,
+    {
+      $set: {
+        'inventory.quantity': quantity,
+        'inventory.inStock': inStock,
+      },
+    },
+    { new: true },
+  );
+  return updatedProduct;
+};
+
 export const OrderServices = {
   createOrder,
   getALLOrders,
   getOrdersByEmail,
+  getProductByName,
+  getProductById,
+  updateProductInventory,
 };
